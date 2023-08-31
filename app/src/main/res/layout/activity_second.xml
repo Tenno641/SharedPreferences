@@ -72,7 +72,8 @@
         android:layout_marginTop="32dp"
         android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="@id/guideline3"
-        app:layout_constraintTop_toBottomOf="@id/sentText" />
+        app:layout_constraintTop_toBottomOf="@id/sentText"
+        tools:text="test"/>
 
     <!-- Back Button -->
     <Button

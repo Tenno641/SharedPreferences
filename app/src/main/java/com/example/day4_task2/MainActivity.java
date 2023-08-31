@@ -1,6 +1,7 @@
 package com.example.day4_task2;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,12 +9,14 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.day4_task2.adapter.DataBaseAdapter;
+import com.example.day4_task2.data.Model;
+
 public class MainActivity extends AppCompatActivity {
 
     Button sendBtn, closeBtn;
     EditText mobileED, messageED;
     String mobile, message;
-    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,16 +36,13 @@ public class MainActivity extends AppCompatActivity {
             mobile = mobileED.getText().toString();
             message = messageED.getText().toString();
 
-            preferences = getSharedPreferences("SAVED_PREF", Context.MODE_PRIVATE);
-            SharedPreferences.Editor editor = preferences.edit();
+            DataBaseAdapter dataBaseAdapter = new DataBaseAdapter(MainActivity.this);
+            dataBaseAdapter.insertRow(new Model(mobile, message));
 
-            editor.putString("MOBILE", mobile);
-            editor.putString("MESSAGE", message);
-            editor.commit();
             startActivity(intent);
         });
 
-
+        closeBtn.setOnClickListener(v -> finish());
 
     }
 }

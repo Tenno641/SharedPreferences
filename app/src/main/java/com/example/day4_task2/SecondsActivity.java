@@ -7,12 +7,16 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.day4_task2.adapter.DataBaseAdapter;
+import com.example.day4_task2.data.Model;
+
 public class SecondsActivity extends AppCompatActivity {
 
     TextView from, sentMessage;
     Button closeBtn;
-    SharedPreferences preferences;
-    String mobile, message;
+
+    DataBaseAdapter dataBaseAdapter;
+    Model model;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,15 +25,13 @@ public class SecondsActivity extends AppCompatActivity {
 
         from = findViewById(R.id.senderMobile);
         sentMessage = findViewById(R.id.receivedMessage);
-
         closeBtn = findViewById(R.id.backButton);
 
-        preferences = getSharedPreferences("SAVED_PREF", Context.MODE_PRIVATE);
-        mobile = preferences.getString("MOBILE", "not found");
-        message = preferences.getString("MESSAGE", "not found");
+        dataBaseAdapter = new DataBaseAdapter(this);
+        model = dataBaseAdapter.getRow();
 
-        from.setText(mobile);
-        sentMessage.setText(message);
+        from.setText(model.getMobile());
+        sentMessage.setText(model.getMessage());
 
         closeBtn.setOnClickListener(v -> finish());
 
