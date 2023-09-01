@@ -65,7 +65,7 @@ public class DataBaseAdapter {
 
         String query = "CREATE TABLE " + TABLE_NAME + " ("
                 + ID_COL + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-                + MOBILE_COL + " TEXT,"
+                + MOBILE_COL + " TEXT, "
                 + MESSAGE_COL + " TEXT );";
 
         public DataBaseHelper(@Nullable Context context) {
